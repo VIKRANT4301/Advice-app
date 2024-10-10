@@ -1,31 +1,41 @@
-import React, { useState } from 'react'
-import AdviceData from './AdviceData';
 
-export default function AdviceList() {
-  const [category,setCategory]=useState('');
+import React ,{useState} from 'react'
+import AdviceData from './AdviceData'
+export default function ParticularAdviceList({onSelectAdvice}) {
 
-    const getRandomAdvice=(category)=>{
-      const advices=AdviceData[category];
-      const randomIndex=Math.floor(Math.random()* advices.length);
-      return advices[randomIndex]
+    const[category, setCategory]= useState('');
+
+
+    const getRandomAdvice =(category)=>{
+        const  advice = AdviceData[category];
+        const randomIndex =Math.floor(Math.random()* advice.length);
+        return advice[randomIndex];
+
     }
-
-
-  const handleGeneratedAdvice =()=>{
-    if(category){
-      const advice =getRandomAdvice(category)
+    const handleGeneratorAdvice=()=>{
+        if(category){
+            const advice= getRandomAdvice(category);
+            onSelectAdvice(advice);
+        }
     }
-  }
-
   return (
     <div>
-   <select value={category}>
-    <option value="Health">Health</option>
-    <option value="Finance">Finance</option>
-    <option value="Education">Education</option>
-   </select>
-<button onClick={handleGeneratedAdvice}>Get Advice</button>
-
-    </div>
-  )
+        <select value={category} onChange={(e)=> setCategory(e.target.value)}>
+            <option>Select Category</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+            <option value="Finance">Finance</option>
+            <option  value="Career">Career</option>
+        </select>
+        <button onClick={handleGeneratorAdvice} disabled={!category}>Get Advice</button>
+    </div>
+  )
 }
+
+
+
+
+
+
+
+

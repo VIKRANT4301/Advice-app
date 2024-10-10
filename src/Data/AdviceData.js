@@ -14,6 +14,11 @@ const AdviceData={
         "Purchase Gold",
         "Invest in Market",
         "Make Gold"
+    ],
+    Career:[
+        "Opt right path",
+        "Focus on Your Way"
     ]
+
 }
 export default AdviceData;
